@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kamila's Rewards</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-dark:#3A3730;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #reward-images {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reward-image {
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .sticky-top {
+      position: sticky;
+    }
+
+    #top-element {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      left: 0;
+      top: 0;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.3);
+      border-radius: 0px 0px 16px 16px;
+    }
+
+    .points-info {
+      /* information */
+      height: 19px;
+      margin: 0;
+      padding-bottom: 10px;
+
+      /* Title */
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+
+      /* Dark */
+      color: var(--color-dark);
+    }
+
+    #current-points {
+      /* Auto layout */
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      cursor: pointer;
+
+      /* Dark */
+      background: #3A3730;
+      border-radius: 25.381px;
+    }
+
+    #points-value {
+      /* number */
+      margin: 0;
+      margin-left: 15px;
+
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23.4286px;
+      line-height: 28px;
+
+      /* White */
+      color: #FFFFFF;
+
+
+      /* Inside auto layout */
+      flex: none;
+      order: 1;
+      flex-grow: 0;
+    }
+
+    #icon-gift {
+      /* icon */
+      width: 30px;
+      height: 30px;
+
+
+      /* Inside auto layout */
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+    }
+
+    .dialog-box {
+      display: none;
+    }
+
+    .dialog-box.active {
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #0009;
+      z-index: 999999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 15px;
+    }
+
+    .dialog-box .add-points {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 45px 30px;
+      position: relative;
+    }
+
+    .add-points > * {
+      box-sizing: border-box;
+      width: 100%;
+      margin-bottom: 15px;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23.4286px;
+      line-height: 28px;
+    }
+
+    .add-points button {
+      margin-bottom: 0;
+    }
+
+    .add-points input {
+      padding: 0 30px;
+    }
+
+    .add-points input, .add-points button {
+      height: 50px;
+      border-radius: 100px;
+      border: 2px solid #bfbfbf;
+      outline: 0;
+      cursor: pointer;
+    }
+
+    .add-points input:hover, .add-points button:hover,
+    .add-points input:active, .add-points button:active,
+    .add-points input:focus, .add-points button:focus {
+      border: 2px solid #7f7f7f;
+    }
+
+    .x-mark {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dialog-box">
+    <form action="" class="add-points">
+      <img src="https://i.postimg.cc/h474fKt8/close.png" class="x-mark">
+      <label for="points">Liczba punktów</label>
+      <input type="number" name="points">
+      <label for="password">Sekretne hasło, którego nie zna Kamila</label>
+      <input type="password" name="password">
+      <button type="submit">ZMIEŃ</button>
+    </form>
+  </div> 
+
+  <div class="sticky-top" id="top-element">
+    <div class="right-col">
+      <p class="points-info">Zebrane obecnie punkty</p>
+      <div id="current-points">
+        <img id="icon-gift" src="https://svgshare.com/i/rtB.svg">
+        <p id="points-value"></p>
+      </div>
+    </div>
+  </div>
+  <div id="reward-images">
+    <img class="reward-image" src="assets/reward - cinema without food.png"> 
+    <img class="reward-image" src="assets/reward - gift 1-50.png"> 
+    <img class="reward-image" src="assets/reward - cinema with food.png"> 
+    <img class="reward-image" src="assets/reward - gift 51-100.png"> 
+    <img class="reward-image" src="assets/reward - gift 101-150.png">
+    <img class="reward-image" src="assets/reward - dinner.png"> 
+    <img class="reward-image" src="assets/reward - gift 151-200.png"> 
+    <img class="reward-image" src="assets/reward - gift 201-300.png"> 
+    <img class="reward-image" src="assets/reward - gift 301-400.png"> 
+    <img class="reward-image" src="assets/reward - gift 401-500.png"> 
+    <img class="reward-image" src="assets/reward - torun.png"> 
+    <img class="reward-image" src="assets/reward - wroclaw zoo.png">
+    <img class="reward-image" src="assets/reward - gift 501-700.png">
+    <img class="reward-image" src="assets/reward - orientarium.png"> 
+    <img class="reward-image" src="assets/reward - mazury.png">
+    <img class="reward-image" src="assets/reward - gift 701-1000.png">
+    <img class="reward-image" src="assets/reward - bieszczady.png">
+    <img class="reward-image" src="assets/reward - zakopane.png">
+    <img class="reward-image" src="assets/reward - gift 1001-1500.png">
+    <img class="reward-image" src="assets/reward - skalne miasto.png"> 
+    <img class="reward-image" src="assets/reward - warszawa.png"> 
+    <img class="reward-image" src="assets/reward - gift 1501-2000.png">
+    <img class="reward-image" src="assets/reward - gift 2001-3000.png">
+    <img class="reward-image" src="assets/reward - gift 3001-4000.png">
+    <img class="reward-image" src="assets/reward - gift 4001-5000.png"> 
+  </div>
+
+  <script>
+
+    const url = 'https://rewards-db.jerzy-jarczynski.repl.co/database';
+
+    let data = {};
+
+    const pointsValue = document.querySelector('#points-value');
+    const pointsButton = document.querySelector('#current-points');
+    const dialogBox = document.querySelector('.dialog-box');
+    const xMark = document.querySelector('.x-mark');
+    const pointsField = document.querySelector('input[name="points"]');
+    const passwordField = document.querySelector('input[name="password"]');
+    const submitButton = document.querySelector('button[type="submit"]');
+
+    const initContent = function(dupa) {
+    pointsValue.innerHTML = dupa.rewards;
+
+    xMark.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    if (dialogBox.classList.contains('active')) {
+      dialogBox.classList.remove('active');
+    }
+    });
+
+    pointsButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    if (!dialogBox.classList.contains('active')) {
+      dialogBox.classList.add('active');
+    }
+    });
+
+    submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    if (pointsField.value != dupa.rewards
+        && passwordField.value == '1111') {
+      const payload = {};
+
+      payload.rewards = pointsField.value;
+
+      console.log('payload', payload);
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      fetch(url, options)
+        .then(function(response) {
+        return response.json();
+      })
+        .then(function(parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+        if (dialogBox.classList.contains('active')) {
+          dialogBox.classList.remove('active');
+        }
+      })
+        .then(function() {
+          window.location.reload();
+        });
+
+    }
+    });
+    }
+
+    fetch(url)
+    .then(function(rawResponse) {
+    return rawResponse.json();
+    })
+    .then(function(parsedResponse) {
+    data = parsedResponse;
+
+    initContent(data);
+    });
+
+  </script>
+</body>
+</html>
